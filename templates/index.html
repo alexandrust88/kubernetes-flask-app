@@ -10,10 +10,47 @@
         text-align: center;
       }
     </style>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   </head>
   <body>
-    <div class="container">
-      {{name}}
-    </div>
+    <table class="pure-table" style="width:100%">
+      <thead>
+          <tr style="border-bottom: 1px #ccc solid;">
+              <th colspan="2" id="count"></th>
+          </tr>
+      </thead>
+
+      <thead>
+          <tr>
+              <th>#</th>
+              <th>Name</th>
+          </tr>
+      </thead>
+
+      <tbody id="names">
+          
+      </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      var names = {};
+      setInterval(function(){
+        $.get( "/status.json", function( data ) {
+          var name = data['name'];
+          if(name in names){
+            return;
+          }
+          names[name] = true;
+          var content = ''
+          var i = 1;
+          for(key in names){
+            content += '<tr><td>' + i + '</td><td>' + key + '</td></tr>';
+            i++;
+          }
+          $( "#names" ).html(content);
+          $( "#count" ).html('Replica Count: ' + (i-1));
+        });
+      }, 100);
+    </script>
   </body>
 </html>

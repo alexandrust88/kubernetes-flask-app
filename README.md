@@ -53,6 +53,6 @@ kubectl get pods --all-namespaces             # List all pods in all namespaces
 
 kubectl describe svc app # Get info about the exposed service
 kubectl explain deployment.spec.template.spec # Show man pages for options
-```
+``
 
 See also this [cheatsheet](https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/)
