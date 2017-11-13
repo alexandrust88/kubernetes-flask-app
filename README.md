@@ -3,15 +3,15 @@
 Based on [honestbee/flask_app_k8s](https://github.com/honestbee/flask_app_k8s)
 
 ## Step 1 - Build the image
-```
+```bash
 export DOCKER_REPO=<docker-hub-user>
 docker build -t $DOCKER_REPO/flask-app:1.0 .
 ```
 
 ## Step 2 - Push image
 
-```
-docker push $DOCKER_REPO/flask_app:1.0
+```bash
+docker push $DOCKER_REPO/flask-app:1.0
 ```
 
 ## Step 3 - Deploying to Kubernetes
@@ -28,8 +28,14 @@ kubectl expose deploy app --target-port=5000 --type=LoadBalancer
 
 ## Step 5 - Access the app through the service
 
-```
+```bash
 minikube service app
+```
+
+## Step 6 - Scale
+
+```bash
+kubectl scale deployment app --replicas=10
 ```
 
 ## Cleanup
@@ -47,6 +53,6 @@ kubectl get pods --all-namespaces             # List all pods in all namespaces
 
 kubectl describe svc app # Get info about the exposed service
 kubectl explain deployment.spec.template.spec # Show man pages for options
-``
+```
 
 See also this [cheatsheet](https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/)
