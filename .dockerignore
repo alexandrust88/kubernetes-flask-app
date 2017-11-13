@@ -1,0 +1,7 @@
+.git/
+kubernetes/
+imgur/
+.dockerignore
+.gitignore
+README.md
+Dockerfile
