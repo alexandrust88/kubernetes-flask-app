@@ -1,0 +1,1 @@
+kubectl scale deployment app --replicas=$1
